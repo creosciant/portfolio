@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>creo's collection of things</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <style>
+            body {
+                background: linear-gradient(45deg, #0a0a2e, #16213e);
+                color: #00ff9d;
+                min-height: 100vh;
+                margin: 0;
+                font-family: 'Courier New', monospace;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            body::before {
+                content: '';
+                position: fixed;
+                width: 200%;
+                height: 200%;
+                top: -50%;
+                left: -50%;
+                background: 
+                    linear-gradient(rgba(6, 227, 250, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(6, 227, 250, 0.05) 1px, transparent 1px);
+                background-size: 30px 30px;
+                transform: perspective(100vh) rotateX(45deg);
+                pointer-events: none;
+            }
+
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 20px;
+                flex-wrap: wrap;
+                max-width: 1200px;
+                gap: 30px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .middle-text {
+                margin: 20px 0;
+                font-size: 32px;
+                color: #00ff9d;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d;
+                animation: glitch 3s infinite;
+            }
+
+            .link-box {
+                flex: 1;
+                min-width: 250px;
+                max-width: 300px;
+                margin: 15px;
+                padding: 20px;
+                text-align: center;
+                background: rgba(16, 16, 32, 0.7);
+                border: 1px solid #00ff9d;
+                box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+                backdrop-filter: blur(5px);
+                transition: all 0.3s ease;
+            }
+
+            .link-box:hover {
+                box-shadow: 0 0 25px rgba(0, 255, 157, 0.5);
+                transform: translateY(-5px);
+            }
+
+            .arrow-animation {
+                font-size: 24px;
+                animation: neonPulse 2s infinite;
+            }
+
+            @keyframes neonPulse {
+                0% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+                50% { color: #00ffff; text-shadow: 0 0 20px #00ffff; }
+                100% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+            }
+
+            @keyframes glitch {
+                0% { transform: translate(0); }
+                20% { transform: translate(-2px, 2px); }
+                40% { transform: translate(-2px, -2px); }
+                60% { transform: translate(2px, 2px); }
+                80% { transform: translate(2px, -2px); }
+                100% { transform: translate(0); }
+            }
+
+            .arrow {
+                display: block;
+                margin: 10px 0;
+            }
+
+            a {
+                color: #00ffff;
+                text-decoration: none;
+                font-size: 18px;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            a:hover {
+                color: #ff00ff;
+                text-shadow: 0 0 10px #ff00ff;
+            }
+
+            h1 {
+                margin-top: 20px;
+                font-size: 24px;
+                color: #00ff9d;
+            }
+
+            p {
+                color: #4ecdc4;
+                font-size: 16px;
+            }
+
+            .github-icon {
+                font-size: 48px;
+                margin: 20px 0;
+                transition: all 0.3s ease;
+                animation: float 3s ease-in-out infinite;
+            }
+
+            .github-icon i {
+                color: #00ff9d;
+                text-shadow: 0 0 15px #00ff9d;
+            }
+
+            .github-icon:hover i {
+                color: #ff00ff;
+                text-shadow: 0 0 20px #ff00ff;
+                transform: scale(1.1);
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+        </style>
+    </head>
+    <body>
+        <h2 class="middle-text">this is all i've got.</h2>
+        <a href="https://github.com/creosciant" class="github-icon" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+        <div class="container">
+            <div class="link-box">
+                <div class="arrow-animation">
+                    <span class="arrow">↓↓</span>
+                </div>
+                <a href="https://creosciant.github.io/">creosciant.github.io</a>
+                <h1>links repository</h1>
+                <p>contains the links to my entire being</p>
+            </div>
+
+            <div class="link-box">
+                <div class="arrow-animation">
+                    <span class="arrow">↓↓</span>
+                </div>
+                <a href="https://creosciant.github.io/interview">interview</a>
+                <h1>to-do list application</h1>
+                <p>my poor attempt at making a to-do list application w 0 web design experience</p>
+            </div>
+
+            <div class="link-box">
+                <div class="arrow-animation">
+                    <span class="arrow">↓↓</span>
+                </div>
+                <a href="https://creosciant.github.io/testing">testing</a>
+                <h1>what if it was 3 pages deep?</h1>
+                <p>title</p>
+            </div>
+        </div>
+    </body>
+</html>
