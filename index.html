@@ -6,33 +6,54 @@
         <title>creo's collection of things</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <style>
-            body {
-                background: linear-gradient(45deg, #0a0a2e, #16213e);
-                color: #00ff9d;
-                min-height: 100vh;
+            * {
                 margin: 0;
-                font-family: 'Courier New', monospace;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: linear-gradient(135deg, #0f0820 0%, #1a1038 50%, #0d0515 100%);
+                color: #c8b5d6;
+                min-height: 100vh;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 text-align: center;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: flex-start;
+                padding-top: 60px;
                 position: relative;
-                overflow: hidden;
+                overflow-x: hidden;
             }
 
             body::before {
                 content: '';
                 position: fixed;
-                width: 200%;
-                height: 200%;
-                top: -50%;
-                left: -50%;
-                background: 
-                    linear-gradient(rgba(6, 227, 250, 0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(6, 227, 250, 0.05) 1px, transparent 1px);
-                background-size: 30px 30px;
-                transform: perspective(100vh) rotateX(45deg);
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: 
+                    radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(75, 0, 130, 0.05) 0%, transparent 50%);
                 pointer-events: none;
+                z-index: -1;
+            }
+
+            .moon-accent {
+                position: fixed;
+                top: 20px;
+                right: 40px;
+                font-size: 64px;
+                opacity: 0.15;
+                z-index: 0;
+                animation: moonFloat 6s ease-in-out infinite;
+            }
+
+            @keyframes moonFloat {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
             }
 
             .container {
@@ -41,146 +62,189 @@
                 align-items: flex-start;
                 padding: 20px;
                 flex-wrap: wrap;
-                max-width: 1200px;
-                gap: 30px;
+                max-width: 900px;
+                gap: 40px;
                 position: relative;
                 z-index: 1;
             }
 
-            .middle-text {
-                margin: 20px 0;
-                font-size: 32px;
-                color: #00ff9d;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 3px;
-                text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d;
-                animation: glitch 3s infinite;
+            .header {
+                margin-bottom: 40px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .header h2 {
+                font-size: 28px;
+                color: #e6d5f0;
+                font-weight: 300;
+                letter-spacing: 2px;
+                margin-bottom: 8px;
+                text-transform: lowercase;
+            }
+
+            .header .divider {
+                width: 80px;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #7d4fa8, transparent);
+                margin: 16px auto;
             }
 
             .link-box {
-                flex: 1;
-                min-width: 250px;
-                max-width: 300px;
-                margin: 15px;
-                padding: 20px;
+                flex: 0 1 240px;
+                padding: 28px 20px;
                 text-align: center;
-                background: rgba(16, 16, 32, 0.7);
-                border: 1px solid #00ff9d;
-                box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
-                backdrop-filter: blur(5px);
-                transition: all 0.3s ease;
+                background: rgba(20, 10, 30, 0.6);
+                border: 1px solid #4a3060;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .link-box::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                pointer-events: none;
             }
 
             .link-box:hover {
-                box-shadow: 0 0 25px rgba(0, 255, 157, 0.5);
-                transform: translateY(-5px);
+                border-color: #8a2be2;
+                background: rgba(20, 10, 30, 0.9);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(138, 43, 226, 0.15);
             }
 
-            .arrow-animation {
-                font-size: 24px;
-                animation: neonPulse 2s infinite;
+            .link-box:hover::before {
+                opacity: 1;
             }
 
-            @keyframes neonPulse {
-                0% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
-                50% { color: #00ffff; text-shadow: 0 0 20px #00ffff; }
-                100% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
-            }
-
-            @keyframes glitch {
-                0% { transform: translate(0); }
-                20% { transform: translate(-2px, 2px); }
-                40% { transform: translate(-2px, -2px); }
-                60% { transform: translate(2px, 2px); }
-                80% { transform: translate(2px, -2px); }
-                100% { transform: translate(0); }
-            }
-
-            .arrow {
+            .crescent {
+                font-size: 32px;
+                color: #8a2be2;
+                margin-bottom: 12px;
                 display: block;
-                margin: 10px 0;
-            }
-
-            a {
-                color: #00ffff;
-                text-decoration: none;
-                font-size: 18px;
+                opacity: 0.8;
                 transition: all 0.3s ease;
-                position: relative;
             }
 
-            a:hover {
-                color: #ff00ff;
-                text-shadow: 0 0 10px #ff00ff;
-            }
-
-            h1 {
-                margin-top: 20px;
-                font-size: 24px;
-                color: #00ff9d;
-            }
-
-            p {
-                color: #4ecdc4;
-                font-size: 16px;
-            }
-
-            .github-icon {
-                font-size: 48px;
-                margin: 20px 0;
-                transition: all 0.3s ease;
-                animation: float 3s ease-in-out infinite;
-            }
-
-            .github-icon i {
-                color: #00ff9d;
-                text-shadow: 0 0 15px #00ff9d;
-            }
-
-            .github-icon:hover i {
-                color: #ff00ff;
-                text-shadow: 0 0 20px #ff00ff;
+            .link-box:hover .crescent {
+                opacity: 1;
                 transform: scale(1.1);
             }
 
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
+            a {
+                color: #b8a5d0;
+                text-decoration: none;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                position: relative;
+                font-weight: 500;
+                display: inline-block;
+                padding-bottom: 4px;
+            }
+
+            a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: #8a2be2;
+                transition: width 0.3s ease;
+            }
+
+            a:hover {
+                color: #8a2be2;
+            }
+
+            a:hover::after {
+                width: 100%;
+            }
+
+            h1 {
+                margin-top: 12px;
+                font-size: 18px;
+                color: #d4c5e2;
+                font-weight: 400;
+                letter-spacing: 0.5px;
+            }
+
+            p {
+                color: #9a8aaf;
+                font-size: 13px;
+                margin-top: 10px;
+                line-height: 1.5;
+                font-weight: 300;
+            }
+
+            .github-icon {
+                margin: 20px 0 40px 0;
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 1;
+            }
+
+            .github-icon i {
+                font-size: 42px;
+                color: #8a2be2;
+                transition: all 0.3s ease;
+                opacity: 0.8;
+            }
+
+            .github-icon:hover i {
+                color: #b8a5d0;
+                opacity: 1;
+                transform: scale(1.1);
             }
         </style>
     </head>
     <body>
-        <h2 class="middle-text">this is all i've got.</h2>
+        <div class="moon-accent">☽</div>
+        
+        <div class="header">
+            <h2>this is all i've got.</h2>
+            <div class="divider"></div>
+        </div>
+
         <a href="https://github.com/creosciant" class="github-icon" target="_blank">
             <i class="fab fa-github"></i>
         </a>
+
         <div class="container">
             <div class="link-box">
-                <div class="arrow-animation">
-                    <span class="arrow">↓↓</span>
-                </div>
+                <span class="crescent">☽</span>
                 <a href="https://creosciant.github.io/">creosciant.github.io</a>
                 <h1>links repository</h1>
                 <p>contains the links to my entire being</p>
             </div>
 
             <div class="link-box">
-                <div class="arrow-animation">
-                    <span class="arrow">↓↓</span>
-                </div>
+                <span class="crescent">☽</span>
                 <a href="https://creosciant.github.io/interview">interview</a>
                 <h1>to-do list site</h1>
                 <p>my poor attempt at making a to-do list application w 0 web design experience</p>
             </div>
 
             <div class="link-box">
-                <div class="arrow-animation">
-                    <span class="arrow">↓↓</span>
-                </div>
+                <span class="crescent">☽</span>
                 <a href="https://creosciant.github.io/testing">testing</a>
                 <h1>what if it was 3 pages deep?</h1>
                 <p>title</p>
+            </div>
+
+            <div class="link-box">
+                <span class="crescent">☽</span>
+                <a href="https://creosciant.github.io/CSfundamentals">CS fundamentals</a>
+                <h1>in java</h1>
+                <p>UNFINISHED/NOT FINAL EVERYTHING</p>
             </div>
         </div>
     </body>
